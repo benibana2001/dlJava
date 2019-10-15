@@ -1,22 +1,23 @@
-public class WebImageBinder implements Aggregate{
-    public WebImage[] webImages;
-    public int last = 0;
+import java.util.ArrayList;
 
-    public WebImageBinder(int maxsize) {
-        this.webImages = new WebImage[maxsize];
+public class WebImageBinder implements Aggregate{
+    public ArrayList<WebImage> webImages;
+
+    public WebImageBinder() {
+        this.webImages = new ArrayList<>();
     }
 
     public WebImage getWebImageAt(int index) {
-        return webImages[index];
+        return webImages.get(index);
+//        return webImages[index];
     }
 
     public void appendWebImage(WebImage webImage) {
-        webImages[last] = webImage;
-        last++;
+        this.webImages.add(webImage);
     }
 
     public int getLength() {
-        return this.last;
+        return this.webImages.size();
     }
 
     public Iterator iterator() {

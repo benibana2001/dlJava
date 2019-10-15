@@ -13,7 +13,7 @@ public class WebImage {
         return this.url;
     }
 
-    void fetch() throws Exception {
+    void fetch(String newDir) throws Exception {
         URL urlImg = new URL(this.getImageUrl());
         String fileName = (new File(url).getName());
 
@@ -23,14 +23,13 @@ public class WebImage {
         int httpStatusCode = urlConn.getResponseCode();
 
         if (httpStatusCode != HttpURLConnection.HTTP_OK) {
-            String message = "画像の取得に失敗しました。: " + url;
-            throw new HttpStatusDead(message);
+            throw new HttpStatusDead("画像の取得に失敗しました。: " + url);
         }
 
         // Input Stream
         DataInputStream dataInStream = new DataInputStream(urlConn.getInputStream());
         // Output Stream
-        DataOutputStream dataOutStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
+        DataOutputStream dataOutStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(newDir + fileName)));
 
 
         // Read Data
@@ -45,7 +44,7 @@ public class WebImage {
         dataInStream.close();
         dataOutStream.close();
 
-        waitMilli(300);
+        waitMilli(100);
     }
 
     void waitMilli(int m) throws Exception {

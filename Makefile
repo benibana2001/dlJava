@@ -1,9 +1,10 @@
 BUILD = build
+IMG_DIR = img
 
 b:
-	javac -d BUILD src/*.java
+	javac -d ${BUILD} src/*.java
 	java -classpath BUILD Main
 
 r:
-	rm ./*.png
-	rm BUILD/*.class
+	rm -rf ./${IMG_DIR}
+	rm ${BUILD}/*.class
