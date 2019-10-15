@@ -2,39 +2,22 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class HttpStatusDead extends Exception {
-    public HttpStatusDead(String message) {
-        super(message);
-    }
-}
+public class WebImage {
+    private String url;
 
-class Downloader {
-    private HttpURLConnection urlConn = null;
-    private String url1 = "1.png";
-    private String url2 = "2.png";
-
-    void download() {
-        System.out.println("#START");
-
-        try {
-            getImage(url1);
-            getImage(url2);
-        } catch (IOException e) {
-            System.out.println(e);
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-
-        }
-
-        System.out.println("#FINISH");
+    WebImage(String url) {
+        this.url = url;
     }
 
-    void getImage(String url) throws Exception {
-        URL urlImg = new URL(url);
+    private String getImageUrl() {
+        return this.url;
+    }
+
+    void fetch() throws Exception {
+        URL urlImg = new URL(this.getImageUrl());
         String fileName = (new File(url).getName());
 
-        urlConn = (HttpURLConnection) urlImg.openConnection();
+        HttpURLConnection urlConn = (HttpURLConnection) urlImg.openConnection();
         urlConn.connect();
 
         int httpStatusCode = urlConn.getResponseCode();
@@ -43,8 +26,6 @@ class Downloader {
             String message = "画像の取得に失敗しました。: " + url;
             throw new HttpStatusDead(message);
         }
-
-        waitMilli(1100);
 
         // Input Stream
         DataInputStream dataInStream = new DataInputStream(urlConn.getInputStream());
@@ -63,6 +44,8 @@ class Downloader {
         // Close Stream
         dataInStream.close();
         dataOutStream.close();
+
+        waitMilli(300);
     }
 
     void waitMilli(int m) throws Exception {
