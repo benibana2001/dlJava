@@ -17,6 +17,8 @@ public class Main {
         }
         */
 
+        // 0: host, 1: extension, 2: newDirName, 3: zeroPadding, 4: maxPage, 5: prefix
+
         switch (args.length){
             case 0:
                 throw new ArgsWrong("コマンド引数を設定してください。");

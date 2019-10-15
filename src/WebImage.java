@@ -22,6 +22,10 @@ public class WebImage {
 
         int httpStatusCode = urlConn.getResponseCode();
 
+        if (httpStatusCode == HttpURLConnection.HTTP_NOT_FOUND) {
+            throw new HttpStatusDead("画像が存在しないようです。: " + url);
+        }
+
         if (httpStatusCode != HttpURLConnection.HTTP_OK) {
             throw new HttpStatusDead("画像の取得に失敗しました。: " + url);
         }
@@ -44,12 +48,11 @@ public class WebImage {
         dataInStream.close();
         dataOutStream.close();
 
-        waitMilli(100);
+        waitMilli(100, "downloading: " + fileName + "...");
     }
 
-    void waitMilli(int m) throws Exception {
-        System.out.println("checking...");
+    void waitMilli(int m, String message) throws Exception {
+        System.out.println(message);
         Thread.sleep(m);
-        System.out.println("ok!");
     }
 }

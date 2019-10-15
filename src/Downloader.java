@@ -10,7 +10,7 @@ public class Downloader {
     private String newDir = "img";
     private int zeroPad = 0;
     private int maxPage = 100;
-    private String preFix = null;
+    private String preFix = "";
 
     public Downloader(String host){
         setHost(host);
@@ -43,7 +43,7 @@ public class Downloader {
         setMaxPage(maxPage);
     }
 
-    public Downloader(String host, String ext, String newDir, int maxPage, int zeroPad, String prefix){
+    public Downloader(String host, String ext, String newDir, int zeroPad, int maxPage, String prefix){
         setHost(host);
         setExt(ext);
         setNewDir(newDir);
@@ -127,7 +127,10 @@ public class Downloader {
 
         WebImageBinder webImageBinder = new WebImageBinder();
 
+        System.out.println(getMaxPage());
+
         for (int i = 1; i < getMaxPage(); i++) {
+            // todo: ループに入らない
             webImageBinder.appendWebImage(new WebImage(imgURL(i)));
         }
 
