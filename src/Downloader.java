@@ -112,7 +112,7 @@ public class Downloader {
         File newFile = new File(dirname);
 
         if (newFile.mkdir()) {
-            System.out.println(getNewDir() + " ディレクトリを作成します。");
+            System.out.println(" ディレクトリを作成します。" + getNewDir());
         } else {
             throw new FailedMkDir("ディレクトリの作成に失敗しました。 " + getNewDir());
         }
@@ -123,11 +123,7 @@ public class Downloader {
     }
 
     void download() throws Exception {
-        System.out.println("#START");
-
         WebImageBinder webImageBinder = new WebImageBinder();
-
-        System.out.println(getMaxPage());
 
         for (int i = 1; i < getMaxPage(); i++) {
             // todo: ループに入らない

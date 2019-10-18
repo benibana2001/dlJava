@@ -9,9 +9,8 @@ public class Main {
     }
 
     private static Downloader makeDLoader(String[] args) throws Exception {
-        System.out.println("右記の数の引数で初期化を行います: " + Integer.toString(args.length));
-
         /*
+        System.out.println("右記の数の引数で初期化を行います: " + Integer.toString(args.length));
         for (int i = 0; i < args.length; i++){
             System.out.println(args[i]);
         }
