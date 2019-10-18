@@ -1,14 +1,15 @@
 package DLFrame;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DLFrame extends Frame implements ActionListener, Mediator {
     private ColleagueCheckBox checkJPG;
     private ColleagueCheckBox checkPNG;
-    private ColleagueCheckBox digitOne;
-    private ColleagueCheckBox digitTwo;
-    private ColleagueCheckBox digitThree;
+    private ColleagueCheckBox checkDigitOne;
+    private ColleagueCheckBox checkDigitTwo;
+    private ColleagueCheckBox checkDigitThree;
     private ColleagueTextField textHost;
     private ColleagueTextField textNewDir;
     private ColleagueTextField textMaxPage;
@@ -17,9 +18,11 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     public DLFrame(String title) {
         super(title);
+        setSize(100, 1000);
         setBackground(Color.lightGray);
 
-        setLayout(new GridLayout(7, 3));
+        setLayout(new GridLayout(8, 2));
+//        setLayout(new FlowLayout());
 
         createColleagues();
         // ==============================================
@@ -32,9 +35,10 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         add(checkJPG);
         add(checkPNG);
         //
-        add(digitOne);
-        add(digitTwo);
-        add(digitThree);
+        add(checkDigitOne);
+        add(checkDigitTwo);
+        add(checkDigitThree);
+        add(new Label(""));
         //
         add(new Label("最大ベージ数"));
         add(textMaxPage);
@@ -55,10 +59,10 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         checkJPG = new ColleagueCheckBox("JPG", groupExtension, true);
         checkPNG = new ColleagueCheckBox("PNG", groupExtension, false);
         CheckboxGroup groupZeroPad = new CheckboxGroup();
-        digitOne = new ColleagueCheckBox("1ケタ", groupZeroPad, true);
-        digitTwo = new ColleagueCheckBox("2ケタ", groupZeroPad, false);
-        digitThree = new ColleagueCheckBox("3ケタ", groupZeroPad, false);
-        textHost = new ColleagueTextField("http://", 70);
+        checkDigitOne = new ColleagueCheckBox("1ケタ", groupZeroPad, true);
+        checkDigitTwo = new ColleagueCheckBox("2ケタ", groupZeroPad, false);
+        checkDigitThree = new ColleagueCheckBox("3ケタ", groupZeroPad, false);
+        textHost = new ColleagueTextField("http://", 30);
         textNewDir = new ColleagueTextField("src", 20);
         textMaxPage = new ColleagueTextField("100", 10);
         textPrefix = new ColleagueTextField("", 20);
@@ -68,16 +72,44 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         checkJPG.setMediator(this);
 
         checkPNG.setMediator(this);
-        digitOne.setMediator(this);
-        digitTwo.setMediator(this);
-        digitThree.setMediator(this);
+        checkDigitOne.setMediator(this);
+        checkDigitTwo.setMediator(this);
+        checkDigitThree.setMediator(this);
         textHost.setMediator(this);
         textNewDir.setMediator(this);
         textMaxPage.setMediator(this);
         textPrefix.setMediator(this);
 
         buttonDL.setMediator(this);
+
+        // SET LISTENER
+        checkJPG.addItemListener(checkJPG);
+        checkPNG.addItemListener(checkPNG);
+        checkDigitOne.addItemListener(checkDigitOne);
+        checkDigitTwo.addItemListener(checkDigitTwo);
+        checkDigitThree.addItemListener(checkDigitThree);
+        textHost.addTextListener(textHost);
+        textNewDir.addTextListener(textNewDir);
+        textMaxPage.addTextListener(textMaxPage);
+        textPrefix.addTextListener(textPrefix);
     }
 
+    @Override
+    public void colleagueChanged() {
+        attrChanged();
+    }
 
+    private void attrChanged() {
+        // Hostが空欄の時は ダウンロードボタンを不活性
+        if (textHost.getText().length() > 0) {
+            buttonDL.setColleagueEnabled(true);
+        } else {
+            buttonDL.setColleagueEnabled(false);
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(e.toString());
+        System.exit(0);
+    }
 }
