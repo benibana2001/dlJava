@@ -8,7 +8,7 @@ public class DownloaderCreator {
     private String host = "http://www.example.com";
     private String ext = ".jpg";
     private String newDir = "img";
-    private int zeroPad = 0;
+    private int zeroPad = 1;
     private int maxPage = 100;
     private String preFix = "";
 
@@ -90,6 +90,10 @@ public class DownloaderCreator {
         }
     }
 
+    public int getZeroPad() {
+        return this.zeroPad;
+    }
+
     public String getNewDir() {
         if(this.newDir.substring(this.newDir.length() - 1).equals("/")) {
             return this.newDir;
@@ -101,10 +105,6 @@ public class DownloaderCreator {
     public int getMaxPage() {
         return this.maxPage;
     }
-
-//    private getZeroPad() {
-        // todo:
-//    }
 
     public String getPrefix() {
         return this.preFix;

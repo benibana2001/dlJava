@@ -12,7 +12,7 @@ public class Downloader{
 
         for (int i = 1; i < dc.getMaxPage(); i++) {
             webImageBinder.appendWebImage(new WebImage(
-                    dc.getHost() + dc.getPrefix() + i + dc.getExt()
+                    dc.getHost() + dc.getPrefix() + paddingZero(dc.getZeroPad(), i) + dc.getExt()
             ));
         }
 
@@ -37,6 +37,18 @@ public class Downloader{
         } else {
             throw new FailedMkDir("ディレクトリの作成に失敗しました。 " + dirname);
         }
+    }
+
+    private String paddingZero(int digit, int i) {
+            return pad(digit, i, "0");
+    }
+
+    private String pad(int digit, int n, String pre) {
+        String s = String.valueOf(n);
+        while (s.length() < digit) {
+            s = pre + s;
+        }
+        return s;
     }
 
 }

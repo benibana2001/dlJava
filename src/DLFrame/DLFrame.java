@@ -128,13 +128,13 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 dlFrameGateway.setExt(".jpg");
                 break;
             case digitOne:
-                dlFrameGateway.setZeroPad(0);
-                break;
-            case digitTwo:
                 dlFrameGateway.setZeroPad(1);
                 break;
-            case digitThree:
+            case digitTwo:
                 dlFrameGateway.setZeroPad(2);
+                break;
+            case digitThree:
+                dlFrameGateway.setZeroPad(3);
                 break;
             default:
                 break;

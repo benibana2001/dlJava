@@ -4,7 +4,7 @@ BUILD_FRAME_DIR = buildFrame
 HOST = http://tk2-255-37178.vs.sakura.ne.jp/portfolio/poll/img/
 EXT = jpg
 NEWDIR = img
-ZEROPAD = 0
+ZEROPAD = 1
 MAXPAGE = 100
 PREFIX = photo_
 
