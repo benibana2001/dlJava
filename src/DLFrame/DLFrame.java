@@ -165,13 +165,13 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             this.dlFrameGateway.setText("");
         }
         //
-        if (textMaxPage.getText().length() > 0) {
+        if (Integer.parseInt(textMaxPage.getText()) > 0) {
             textMaxPage.setBackground(Color.white);
-            this.dlFrameGateway.setMaxPage(textMaxPage.getX());
+            this.dlFrameGateway.setMaxPage(Integer.parseInt(textMaxPage.getText()));
         } else {
             textMaxPage.setBackground(Color.red);
             buttonDL.setColleagueEnabled(false);
-            this.dlFrameGateway.setMaxPage(0);
+            this.dlFrameGateway.setMaxPage(1);
         }
         //
         if (textPrefix.getText().length() > 0) {
@@ -189,9 +189,16 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e);
+//        System.out.println(e);
         if (e.getSource() == buttonDL) {
+            System.out.println("リクエスト開始");
             DLFrameGateway.hello();
+            try {
+                this.dlFrameGateway.download();
+            } catch (Exception ex) {
+                System.out.println(ex);
+                System.exit(1);
+            }
         }
     }
 }

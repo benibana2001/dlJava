@@ -11,6 +11,15 @@ public class Downloader{
     void download() throws Exception {
         WebImageBinder webImageBinder = new WebImageBinder();
 
+        //
+//        System.out.println(dc.getHost());
+//        System.out.println(dc.getExt());
+//        System.out.println(dc.getNewDir());
+//        System.out.println(dc.getZeroPad());
+//        System.out.println(dc.getMaxPage());
+//        System.out.println(dc.getPrefix());
+        //
+
         for (int i = 1; i < dc.getMaxPage(); i++) {
             webImageBinder.appendWebImage(new WebImage(
                     dc.getHost() + dc.getPrefix() + Util.paddingZero(dc.getZeroPad(), i) + dc.getExt()

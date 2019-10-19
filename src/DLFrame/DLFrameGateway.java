@@ -13,6 +13,9 @@ public class DLFrameGateway {
         DownloaderCreator dc = new DownloaderCreator("http://www.test.jp");
         System.out.println(dc.getHost());
     }
+    public void download() throws Exception {
+        downloaderCreator.downloadFile();
+    }
 
     public void setText(String text) {
         this.downloaderCreator.setHost(text);
