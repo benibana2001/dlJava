@@ -12,7 +12,7 @@ public class Downloader{
 
         for (int i = 1; i < dc.getMaxPage(); i++) {
             webImageBinder.appendWebImage(new WebImage(
-                    dc.getFqn() + i + dc.getExt()
+                    dc.getHost() + dc.getPrefix() + i + dc.getExt()
             ));
         }
 

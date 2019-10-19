@@ -11,7 +11,7 @@ public class DLFrameGateway {
     public static void hello() {
         System.out.println("hello DLFrame.DLFrameGateway...");
         DownloaderCreator dc = new DownloaderCreator("http://www.test.jp");
-        System.out.println(dc.getFqn());
+        System.out.println(dc.getHost());
     }
 
     public void setText(String text) {
@@ -38,8 +38,16 @@ public class DLFrameGateway {
         this.downloaderCreator.setPreFix(prefix);
     }
 
-    public String getFQN() {
-        return this.downloaderCreator.getFqn();
+    public String getExt() {
+        return this.downloaderCreator.getExt();
+    }
+
+    public String getPrefix() {
+        return this.downloaderCreator.getPrefix();
+    }
+
+    public String getHost() {
+        return this.downloaderCreator.getHost();
     }
 
 }

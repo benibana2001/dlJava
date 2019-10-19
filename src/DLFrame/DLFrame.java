@@ -28,7 +28,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         setSize(100, 1000);
         setBackground(Color.lightGray);
 
-        setLayout(new GridLayout(9, 2));
+        setLayout(new GridLayout(20, 1));
 //        setLayout(new FlowLayout());
 
         createColleagues();
@@ -39,22 +39,25 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         add(new Label("保存ディレクトリ名"));
         add(textNewDir);
         //
+        add(new Label("拡張子"));
         add(checkJPG);
         add(checkPNG);
         //
+        add(new Label("ゼロ埋め"));
         add(checkDigitOne);
         add(checkDigitTwo);
         add(checkDigitThree);
-        add(new Label(""));
         //
-        add(new Label("最大ベージ数"));
+        add(new Label("最大ベージ数（リクエスト数）"));
         add(textMaxPage);
         //
-        add(new Label("接頭辞"));
+        add(new Label("ファイル名の接頭辞"));
         add(textPrefix);
         //
+        add(new Label("サンプル"));
         add(textAreaFQN);
         //
+        add(new Label(""));
         add(buttonDL);
         // ==============================================
         colleagueChanged();
@@ -117,7 +120,6 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     }
 
     public void colleagueCheckBoxChanged(ItemEvent e) {
-        System.out.println(e.getItem().toString());
         switch (e.getItem().toString()){
             case PNG:
                 dlFrameGateway.setExt(".png");
@@ -137,6 +139,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             default:
                 break;
         }
+        writeFQN();
     }
 
     private void attrChanged() {
@@ -174,9 +177,13 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         } else {
             this.dlFrameGateway.setPrefix("");
         }
+        //
+        writeFQN();
+    }
 
-        // FQNを描画
-        textAreaFQN.replaceRange(dlFrameGateway.getFQN(), 0, textAreaFQN.getText().length());
+    // FQNを描画
+    private void writeFQN() {
+        textAreaFQN.replaceRange(dlFrameGateway.getHost() + dlFrameGateway.getPrefix() + "1" + dlFrameGateway.getExt(), 0, textAreaFQN.getText().length());
     }
 
     public void actionPerformed(ActionEvent e) {

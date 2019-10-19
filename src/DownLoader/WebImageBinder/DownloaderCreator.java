@@ -10,32 +10,24 @@ public class DownloaderCreator {
     private String newDir = "img";
     private int zeroPad = 0;
     private int maxPage = 100;
-    private String preFix = "x";
+    private String preFix = "";
 
-    // FullQualifiedName
-    private String fqn = "";
-
-    public DownloaderCreator(){
-        setFqn();
-    }
+    public DownloaderCreator(){}
 
     public DownloaderCreator(String host){
         setHost(host);
-        setFqn();
     }
 
     public DownloaderCreator(String host, String ext){
         setHost(host);
         setExt(ext);
         setNewDir(newDir);
-        setFqn();
     }
 
     public DownloaderCreator(String host, String ext, String newDir){
         setHost(host);
         setExt(ext);
         setNewDir(newDir);
-        setFqn();
     }
 
     public DownloaderCreator(String host, String ext, String newDir, int zeroPad){
@@ -43,7 +35,6 @@ public class DownloaderCreator {
         setExt(ext);
         setNewDir(newDir);
         setZeroPad(zeroPad);
-        setFqn();
     }
 
     public DownloaderCreator(String host, String ext, String newDir, int zeroPad, int maxPage){
@@ -52,7 +43,6 @@ public class DownloaderCreator {
         setNewDir(newDir);
         setZeroPad(zeroPad);
         setMaxPage(maxPage);
-        setFqn();
     }
 
     public DownloaderCreator(String host, String ext, String newDir, int zeroPad, int maxPage, String prefix){
@@ -62,12 +52,10 @@ public class DownloaderCreator {
         setMaxPage(maxPage);
         setZeroPad(zeroPad);
         setPreFix(prefix);
-        setFqn();
     }
 
     public void setHost(String host) {
         this.host = host;
-        setFqn();
     }
 
     public void setExt(String ext) {
@@ -88,10 +76,6 @@ public class DownloaderCreator {
 
     public void setPreFix(String preFix) {
         this.preFix = preFix;
-    }
-
-    private void setFqn() {
-        this.fqn = getHost() + getPrefix();
     }
 
     public String getHost() {
@@ -122,12 +106,8 @@ public class DownloaderCreator {
         // todo:
 //    }
 
-    private String getPrefix() {
+    public String getPrefix() {
         return this.preFix;
-    }
-
-    public String getFqn() {
-        return this.fqn;
     }
 
     public void downloadFile() throws Exception {
