@@ -45,12 +45,6 @@ class ArgsWrong extends Exception {
     }
 }
 
-class HttpStatusDead extends Exception {
-    public HttpStatusDead(String message) {
-        super(message);
-    }
-}
-
 class FailedMkDir extends Exception {
     public FailedMkDir(String message) {
         super(message);

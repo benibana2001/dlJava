@@ -1,3 +1,5 @@
+package WebImageBinder;
+
 import java.util.ArrayList;
 
 public class WebImageBinder implements Aggregate{
@@ -22,5 +24,11 @@ public class WebImageBinder implements Aggregate{
 
     public Iterator iterator() {
         return new WebImageBinderIterator(this);
+    }
+}
+
+class HttpStatusDead extends Exception {
+    HttpStatusDead(String message) {
+        super(message);
     }
 }

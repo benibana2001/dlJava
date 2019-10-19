@@ -1,3 +1,5 @@
+package WebImageBinder;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -5,7 +7,7 @@ import java.net.URL;
 public class WebImage {
     private String url;
 
-    WebImage(String url) {
+    public WebImage(String url) {
         this.url = url;
     }
 
@@ -13,7 +15,7 @@ public class WebImage {
         return this.url;
     }
 
-    void fetch(String newDir) throws Exception {
+    public void fetch(String newDir) throws Exception {
         URL urlImg = new URL(this.getImageUrl());
         String fileName = (new File(url).getName());
 

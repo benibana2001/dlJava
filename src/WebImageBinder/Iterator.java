@@ -1,3 +1,5 @@
+package WebImageBinder;
+
 public interface Iterator {
     // ループの終了条件
     public abstract boolean hasNext();

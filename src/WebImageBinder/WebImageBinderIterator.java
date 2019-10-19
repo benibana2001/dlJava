@@ -1,3 +1,5 @@
+package WebImageBinder;
+
 public class WebImageBinderIterator implements Iterator{
     private WebImageBinder webImageBinder;
     private int index;
