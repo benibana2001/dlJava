@@ -1,14 +1,14 @@
 public class Main {
     public static void main(String[] args) {
         try {
-            Downloader t = makeDLoader(args);
-            t.download();
+            DownloaderCreator dc = makeDLCreator(args);
+            dc.downloadFile();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    private static Downloader makeDLoader(String[] args) throws Exception {
+    private static DownloaderCreator makeDLCreator(String[] args) throws Exception {
         /*
         System.out.println("右記の数の引数で初期化を行います: " + Integer.toString(args.length));
         for (int i = 0; i < args.length; i++){
@@ -22,17 +22,17 @@ public class Main {
             case 0:
                 throw new ArgsWrong("コマンド引数を設定してください。");
             case 1:
-                return new Downloader(args[0]);
+                return new DownloaderCreator(args[0]);
             case 2:
-                return new Downloader(args[0], args[1]);
+                return new DownloaderCreator(args[0], args[1]);
             case 3:
-                return new Downloader(args[0], args[1], args[2]);
+                return new DownloaderCreator(args[0], args[1], args[2]);
             case 4:
-                return new Downloader(args[0], args[1], args[2], Integer.parseInt(args[3]));
+                return new DownloaderCreator(args[0], args[1], args[2], Integer.parseInt(args[3]));
             case 5:
-                return new Downloader(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+                return new DownloaderCreator(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]));
             case 6:
-                return new Downloader(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]), args[5]);
+                return new DownloaderCreator(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]), args[5]);
             default:
                 throw new ArgsWrong("コマンド引数の数に誤りがあります。");
         }
