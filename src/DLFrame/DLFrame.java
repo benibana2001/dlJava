@@ -63,14 +63,20 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         setVisible(true);
     }
 
+    private final String JPG = "JPG";
+    private final String PNG = "PNG";
+    private final String digitOne = "1ケタ";
+    private final String digitTwo = "2ケタ";
+    private final String digitThree = "3ケタ";
+
     public void createColleagues() {
         CheckboxGroup groupExtension = new CheckboxGroup();
-        checkJPG = new ColleagueCheckBox("JPG", groupExtension, true);
-        checkPNG = new ColleagueCheckBox("PNG", groupExtension, false);
+        checkJPG = new ColleagueCheckBox(JPG, groupExtension, true);
+        checkPNG = new ColleagueCheckBox(PNG, groupExtension, false);
         CheckboxGroup groupZeroPad = new CheckboxGroup();
-        checkDigitOne = new ColleagueCheckBox("1ケタ", groupZeroPad, true);
-        checkDigitTwo = new ColleagueCheckBox("2ケタ", groupZeroPad, false);
-        checkDigitThree = new ColleagueCheckBox("3ケタ", groupZeroPad, false);
+        checkDigitOne = new ColleagueCheckBox(digitOne, groupZeroPad, true);
+        checkDigitTwo = new ColleagueCheckBox(digitTwo, groupZeroPad, false);
+        checkDigitThree = new ColleagueCheckBox(digitThree, groupZeroPad, false);
         textHost = new ColleagueTextField("http://", 30);
         textNewDir = new ColleagueTextField("src", 20);
         textMaxPage = new ColleagueTextField("100", 10);
@@ -111,30 +117,72 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     }
 
     public void colleagueCheckBoxChanged(ItemEvent e) {
-        System.out.println(e);
+        System.out.println(e.getItem().toString());
+        switch (e.getItem().toString()){
+            case PNG:
+                dlFrameGateway.setExt(".png");
+                break;
+            case JPG:
+                dlFrameGateway.setExt(".jpg");
+                break;
+            case digitOne:
+                dlFrameGateway.setZeroPad(0);
+                break;
+            case digitTwo:
+                dlFrameGateway.setZeroPad(1);
+                break;
+            case digitThree:
+                dlFrameGateway.setZeroPad(2);
+                break;
+            default:
+                break;
+        }
     }
 
     private void attrChanged() {
         // Hostが空欄の時は ダウンロードボタンを不活性
         if (textHost.getText().length() > 0) {
+            textHost.setBackground(Color.white);
             buttonDL.setColleagueEnabled(true);
-            // FQNを描画
             this.dlFrameGateway.setText(textHost.getText());
-            System.out.println(dlFrameGateway.getText());
-            textAreaFQN.replaceRange(dlFrameGateway.getText(), 0, textAreaFQN.getText().length());
         } else {
+            textHost.setBackground(Color.red);
             buttonDL.setColleagueEnabled(false);
+            this.dlFrameGateway.setText("");
         }
+        //
+        if (textNewDir.getText().length() > 0) {
+            textNewDir.setBackground(Color.white);
+            this.dlFrameGateway.setNewDir(textNewDir.getText());
+        } else {
+            textNewDir.setBackground(Color.red);
+            buttonDL.setColleagueEnabled(false);
+            this.dlFrameGateway.setText("");
+        }
+        //
+        if (textMaxPage.getText().length() > 0) {
+            textMaxPage.setBackground(Color.white);
+            this.dlFrameGateway.setMaxPage(textMaxPage.getX());
+        } else {
+            textMaxPage.setBackground(Color.red);
+            buttonDL.setColleagueEnabled(false);
+            this.dlFrameGateway.setMaxPage(0);
+        }
+        //
+        if (textPrefix.getText().length() > 0) {
+            this.dlFrameGateway.setPrefix(textPrefix.getText());
+        } else {
+            this.dlFrameGateway.setPrefix("");
+        }
+
+        // FQNを描画
+        textAreaFQN.replaceRange(dlFrameGateway.getFQN(), 0, textAreaFQN.getText().length());
     }
 
     public void actionPerformed(ActionEvent e) {
         System.out.println(e);
         if (e.getSource() == buttonDL) {
             DLFrameGateway.hello();
-        }else if (e.getSource() == checkPNG) {
-            System.out.println("CHECKED PNG");
-        } else if (e.getSource() == checkJPG) {
-            System.out.println("CHECKED JPG");
         }
     }
 }

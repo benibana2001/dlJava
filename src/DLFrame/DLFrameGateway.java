@@ -14,11 +14,32 @@ public class DLFrameGateway {
         System.out.println(dc.getFqn());
     }
 
-    public String getText() {
-        return this.downloaderCreator.getFqn();
-    }
-
     public void setText(String text) {
         this.downloaderCreator.setHost(text);
     }
+
+    public void setExt(String ext) {
+        this.downloaderCreator.setExt(ext);
+    }
+
+    public void setZeroPad(int digit) {
+        this.downloaderCreator.setZeroPad(digit);
+    }
+
+    public void setNewDir(String name) {
+        this.downloaderCreator.setNewDir(name);
+    }
+
+    public void setMaxPage(int max) {
+        this.downloaderCreator.setMaxPage(max);
+    }
+
+    public void setPrefix(String prefix) {
+        this.downloaderCreator.setPreFix(prefix);
+    }
+
+    public String getFQN() {
+        return this.downloaderCreator.getFqn();
+    }
+
 }
