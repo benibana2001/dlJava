@@ -1,5 +1,7 @@
 package DLFrame;
 
+import Util.Util;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -183,7 +185,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     // FQNを描画
     private void writeFQN() {
-        textAreaFQN.replaceRange(dlFrameGateway.getHost() + dlFrameGateway.getPrefix() + "1" + dlFrameGateway.getExt(), 0, textAreaFQN.getText().length());
+        textAreaFQN.replaceRange(dlFrameGateway.getHost() + dlFrameGateway.getPrefix() + Util.paddingZero(dlFrameGateway.getZeroPad(), 1) + dlFrameGateway.getExt(), 0, textAreaFQN.getText().length());
     }
 
     public void actionPerformed(ActionEvent e) {

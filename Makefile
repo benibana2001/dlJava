@@ -20,4 +20,5 @@ f:
 	javac -d ${BUILD_FRAME_DIR} -cp src/ src/DLFrame/*.java
 	javac -d ${BUILD_FRAME_DIR} -cp src/ src/TestFrame/*.java
 	javac -d ${BUILD_FRAME_DIR} -cp src/ src/DownLoader/WebImageBinder/*.java
+	javac -d ${BUILD_FRAME_DIR} -cp src/ src/Util/*.java
 	java -cp ${BUILD_FRAME_DIR} TestFrame/TestFrame

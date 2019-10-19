@@ -46,6 +46,10 @@ public class DLFrameGateway {
         return this.downloaderCreator.getPrefix();
     }
 
+    public int getZeroPad() {
+        return this.downloaderCreator.getZeroPad();
+    }
+
     public String getHost() {
         return this.downloaderCreator.getHost();
     }

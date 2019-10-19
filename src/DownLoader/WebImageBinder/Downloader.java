@@ -1,6 +1,7 @@
 package DownLoader.WebImageBinder;
 
 import java.io.File;
+import Util.*;
 
 public class Downloader{
     private DownloaderCreator dc;
@@ -12,7 +13,7 @@ public class Downloader{
 
         for (int i = 1; i < dc.getMaxPage(); i++) {
             webImageBinder.appendWebImage(new WebImage(
-                    dc.getHost() + dc.getPrefix() + paddingZero(dc.getZeroPad(), i) + dc.getExt()
+                    dc.getHost() + dc.getPrefix() + Util.paddingZero(dc.getZeroPad(), i) + dc.getExt()
             ));
         }
 
@@ -38,17 +39,4 @@ public class Downloader{
             throw new FailedMkDir("ディレクトリの作成に失敗しました。 " + dirname);
         }
     }
-
-    private String paddingZero(int digit, int i) {
-            return pad(digit, i, "0");
-    }
-
-    private String pad(int digit, int n, String pre) {
-        String s = String.valueOf(n);
-        while (s.length() < digit) {
-            s = pre + s;
-        }
-        return s;
-    }
-
 }
