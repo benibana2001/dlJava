@@ -24,5 +24,6 @@ public class ColleagueCheckBox extends Checkbox implements ItemListener, Colleag
     @Override
     public void itemStateChanged(ItemEvent e) {
         mediator.colleagueChanged();
+        mediator.colleagueCheckBoxChanged(e);
     }
 }

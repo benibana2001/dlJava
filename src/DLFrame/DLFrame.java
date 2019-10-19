@@ -3,6 +3,7 @@ package DLFrame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 
 public class DLFrame extends Frame implements ActionListener, Mediator {
     private ColleagueCheckBox checkJPG;
@@ -109,22 +110,31 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         attrChanged();
     }
 
+    public void colleagueCheckBoxChanged(ItemEvent e) {
+        System.out.println(e);
+    }
+
     private void attrChanged() {
         // Hostが空欄の時は ダウンロードボタンを不活性
         if (textHost.getText().length() > 0) {
             buttonDL.setColleagueEnabled(true);
             // FQNを描画
-            this.dlFrameGateway.setTestText(textHost.getText());
-            System.out.println(dlFrameGateway.getTestText());
-            textAreaFQN.replaceRange(dlFrameGateway.getTestText(), 0, textAreaFQN.getText().length());
+            this.dlFrameGateway.setText(textHost.getText());
+            System.out.println(dlFrameGateway.getText());
+            textAreaFQN.replaceRange(dlFrameGateway.getText(), 0, textAreaFQN.getText().length());
         } else {
             buttonDL.setColleagueEnabled(false);
         }
     }
 
     public void actionPerformed(ActionEvent e) {
+        System.out.println(e);
         if (e.getSource() == buttonDL) {
             DLFrameGateway.hello();
+        }else if (e.getSource() == checkPNG) {
+            System.out.println("CHECKED PNG");
+        } else if (e.getSource() == checkJPG) {
+            System.out.println("CHECKED JPG");
         }
     }
 }

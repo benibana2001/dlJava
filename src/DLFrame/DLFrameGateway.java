@@ -14,11 +14,11 @@ public class DLFrameGateway {
         System.out.println(dc.getFqn());
     }
 
-    public String getTestText() {
+    public String getText() {
         return this.downloaderCreator.getFqn();
     }
 
-    public void setTestText(String text) {
+    public void setText(String text) {
         this.downloaderCreator.setHost(text);
     }
 }
