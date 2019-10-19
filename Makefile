@@ -17,6 +17,7 @@ r:
 	rm ${BUILD_DIR}/*.class
 
 f:
-	javac -d ${BUILD_FRAME_DIR} src/DLFrame/*.java
+	javac -d ${BUILD_FRAME_DIR} -cp src/ src/DLFrame/*.java
 	javac -d ${BUILD_FRAME_DIR} -cp src/ src/TestFrame/*.java
+	javac -d ${BUILD_FRAME_DIR} -cp src/ src/DownLoader/WebImageBinder/*.java
 	java -cp ${BUILD_FRAME_DIR} TestFrame/TestFrame

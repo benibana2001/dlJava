@@ -1,4 +1,4 @@
-package WebImageBinder;
+package DownLoader.WebImageBinder;
 
 public interface Iterator {
     // ループの終了条件

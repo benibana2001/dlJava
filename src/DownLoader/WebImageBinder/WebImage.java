@@ -1,4 +1,4 @@
-package WebImageBinder;
+package DownLoader.WebImageBinder;
 
 import java.io.*;
 import java.net.HttpURLConnection;

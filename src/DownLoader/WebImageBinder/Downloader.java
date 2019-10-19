@@ -1,4 +1,5 @@
-import WebImageBinder.*;
+package DownLoader.WebImageBinder;
+
 import java.io.File;
 
 public class Downloader{

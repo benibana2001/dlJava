@@ -1,4 +1,4 @@
-package WebImageBinder;
+package DownLoader.WebImageBinder;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,12 @@ public class WebImageBinder implements Aggregate{
 
 class HttpStatusDead extends Exception {
     HttpStatusDead(String message) {
+        super(message);
+    }
+}
+
+class FailedMkDir extends Exception {
+    public FailedMkDir(String message) {
         super(message);
     }
 }

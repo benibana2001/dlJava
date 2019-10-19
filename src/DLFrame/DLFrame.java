@@ -15,13 +15,19 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     private ColleagueTextField textMaxPage;
     private ColleagueTextField textPrefix;
     private ColleagueButton buttonDL;
+    private ColleagueTextArea textAreaFQN;
+
+    private DLFrameGateway dlFrameGateway;
 
     public DLFrame(String title) {
         super(title);
+        //
+        dlFrameGateway = new DLFrameGateway();
+        //
         setSize(100, 1000);
         setBackground(Color.lightGray);
 
-        setLayout(new GridLayout(8, 2));
+        setLayout(new GridLayout(9, 2));
 //        setLayout(new FlowLayout());
 
         createColleagues();
@@ -46,10 +52,12 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         add(new Label("接頭辞"));
         add(textPrefix);
         //
+        add(textAreaFQN);
+        //
         add(buttonDL);
         // ==============================================
         colleagueChanged();
-
+        //
         pack();
         setVisible(true);
     }
@@ -66,6 +74,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         textNewDir = new ColleagueTextField("src", 20);
         textMaxPage = new ColleagueTextField("100", 10);
         textPrefix = new ColleagueTextField("", 20);
+        textAreaFQN = new ColleagueTextArea(1, 20);
         buttonDL = new ColleagueButton("ダウンロード");
 
         // SET MEDIATOR
@@ -92,6 +101,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         textNewDir.addTextListener(textNewDir);
         textMaxPage.addTextListener(textMaxPage);
         textPrefix.addTextListener(textPrefix);
+        buttonDL.addActionListener(this);
     }
 
     @Override
@@ -103,13 +113,18 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         // Hostが空欄の時は ダウンロードボタンを不活性
         if (textHost.getText().length() > 0) {
             buttonDL.setColleagueEnabled(true);
+            // FQNを描画
+            this.dlFrameGateway.setTestText(textHost.getText());
+            System.out.println(dlFrameGateway.getTestText());
+            textAreaFQN.replaceRange(dlFrameGateway.getTestText(), 0, textAreaFQN.getText().length());
         } else {
             buttonDL.setColleagueEnabled(false);
         }
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.toString());
-        System.exit(0);
+        if (e.getSource() == buttonDL) {
+            DLFrameGateway.hello();
+        }
     }
 }

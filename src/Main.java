@@ -1,3 +1,5 @@
+import DownLoader.WebImageBinder.DownloaderCreator;
+
 public class Main {
     public static void main(String[] args) {
         try {
@@ -41,12 +43,6 @@ public class Main {
 
 class ArgsWrong extends Exception {
     public ArgsWrong(String message) {
-        super(message);
-    }
-}
-
-class FailedMkDir extends Exception {
-    public FailedMkDir(String message) {
         super(message);
     }
 }

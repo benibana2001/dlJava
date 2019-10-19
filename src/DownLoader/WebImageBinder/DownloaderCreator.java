@@ -1,19 +1,23 @@
-import WebImageBinder.*;
+package DownLoader.WebImageBinder;
 
 import java.net.HttpURLConnection;
 
 public class DownloaderCreator {
     private HttpURLConnection urlConn = null;
 
-    private String host = "";
+    private String host = "http://www.example.com";
     private String ext = ".jpg";
     private String newDir = "img";
     private int zeroPad = 0;
     private int maxPage = 100;
-    private String preFix = "";
+    private String preFix = "x";
 
     // FullQualifiedName
     private String fqn = "";
+
+    public DownloaderCreator(){
+        setFqn();
+    }
 
     public DownloaderCreator(String host){
         setHost(host);
@@ -61,27 +65,28 @@ public class DownloaderCreator {
         setFqn();
     }
 
-    private void setHost(String host) {
+    public void setHost(String host) {
         this.host = host;
+        setFqn();
     }
 
-    private void setExt(String ext) {
+    public void setExt(String ext) {
         this.ext = ext;
     }
 
-    private void setNewDir(String newDir) {
+    public void setNewDir(String newDir) {
         this.newDir = newDir;
     }
 
-    private void setMaxPage(int maxPage) {
+    public void setMaxPage(int maxPage) {
         this.maxPage = maxPage;
     }
 
-    private void setZeroPad(int zeroPad) {
+    public void setZeroPad(int zeroPad) {
         this.zeroPad = zeroPad;
     }
 
-    private void setPreFix(String preFix) {
+    public void setPreFix(String preFix) {
         this.preFix = preFix;
     }
 
@@ -89,7 +94,7 @@ public class DownloaderCreator {
         this.fqn = getHost() + getPrefix();
     }
 
-    private String getHost() {
+    public String getHost() {
         return this.host;
     }
 
