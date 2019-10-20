@@ -33,6 +33,10 @@ public class DLFrameGateway {
         this.downloaderCreator.setNewDir(name);
     }
 
+    public void setStartPage(int startPage) {
+        this.downloaderCreator.setStartPage(startPage);
+    }
+
     public void setMaxPage(int max) {
         this.downloaderCreator.setMaxPage(max);
     }
@@ -43,6 +47,10 @@ public class DLFrameGateway {
 
     public String getExt() {
         return this.downloaderCreator.getExt();
+    }
+
+    public int getStartPage() {
+        return this.downloaderCreator.getStartPage();
     }
 
     public String getPrefix() {

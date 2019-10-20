@@ -16,6 +16,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     private ColleagueTextField textHost;
     private ColleagueTextField textNewDir;
     private ColleagueTextField textMaxPage;
+    private ColleagueTextField textStartPage;
     private ColleagueTextField textPrefix;
     private ColleagueButton buttonDL;
     private ColleagueTextArea textAreaFQN;
@@ -30,7 +31,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         setSize(100, 1000);
         setBackground(Color.lightGray);
 
-        setLayout(new GridLayout(20, 1));
+        setLayout(new GridLayout(22, 1));
 //        setLayout(new FlowLayout());
 
         createColleagues();
@@ -49,6 +50,9 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         add(checkDigitOne);
         add(checkDigitTwo);
         add(checkDigitThree);
+        //
+        add(new Label("開始ページ番号"));
+        add(textStartPage);
         //
         add(new Label("最大ベージ数（リクエスト数）"));
         add(textMaxPage);
@@ -84,14 +88,14 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         checkDigitThree = new ColleagueCheckBox(digitThree, groupZeroPad, false);
         textHost = new ColleagueTextField("http://", 30);
         textNewDir = new ColleagueTextField("src", 20);
-        textMaxPage = new ColleagueTextField("100", 10);
+        textStartPage = new ColleagueTextField("1", 4);
+        textMaxPage = new ColleagueTextField("100", 4);
         textPrefix = new ColleagueTextField("", 20);
         textAreaFQN = new ColleagueTextArea(1, 20);
         buttonDL = new ColleagueButton("ダウンロード");
 
         // SET MEDIATOR
         checkJPG.setMediator(this);
-
         checkPNG.setMediator(this);
         checkDigitOne.setMediator(this);
         checkDigitTwo.setMediator(this);
@@ -99,8 +103,8 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         textHost.setMediator(this);
         textNewDir.setMediator(this);
         textMaxPage.setMediator(this);
+        textStartPage.setMediator(this);
         textPrefix.setMediator(this);
-
         buttonDL.setMediator(this);
 
         // SET LISTENER
@@ -111,6 +115,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         checkDigitThree.addItemListener(checkDigitThree);
         textHost.addTextListener(textHost);
         textNewDir.addTextListener(textNewDir);
+        textStartPage.addTextListener(textStartPage);
         textMaxPage.addTextListener(textMaxPage);
         textPrefix.addTextListener(textPrefix);
         buttonDL.addActionListener(this);
@@ -165,6 +170,15 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             this.dlFrameGateway.setText("");
         }
         //
+        if (textStartPage.isValid()) {
+            textStartPage.setBackground(Color.white);
+            this.dlFrameGateway.setStartPage(Integer.parseInt(textStartPage.getText()));
+        } else {
+            textMaxPage.setBackground(Color.red);
+            buttonDL.setColleagueEnabled(false);
+            this.dlFrameGateway.setStartPage(1);
+        }
+        //
         if (Integer.parseInt(textMaxPage.getText()) > 0) {
             textMaxPage.setBackground(Color.white);
             this.dlFrameGateway.setMaxPage(Integer.parseInt(textMaxPage.getText()));
@@ -185,7 +199,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     // FQNを描画
     private void writeFQN() {
-        textAreaFQN.replaceRange(dlFrameGateway.getHost() + dlFrameGateway.getPrefix() + Util.paddingZero(dlFrameGateway.getZeroPad(), 1) + dlFrameGateway.getExt(), 0, textAreaFQN.getText().length());
+        textAreaFQN.replaceRange(dlFrameGateway.getHost() + dlFrameGateway.getPrefix() + Util.paddingZero(dlFrameGateway.getZeroPad(), dlFrameGateway.getStartPage()) + dlFrameGateway.getExt(), 0, textAreaFQN.getText().length());
     }
 
     public void actionPerformed(ActionEvent e) {
