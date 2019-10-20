@@ -34,7 +34,7 @@ public class Downloader{
         // Fetch
         while (it.hasNext()) {
             WebImage webImage = (WebImage) it.next();
-            webImage.fetch(dc.getNewDir());
+            webImage.download(dc.getNewDir());
         }
         System.out.println("#FINISH");
     }
