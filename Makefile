@@ -7,10 +7,11 @@ NEWDIR = img
 ZEROPAD = 1
 MAXPAGE = 100
 PREFIX = photo_
+STARTPAGE = 0
 
 b:
 	javac -d ${BUILD_DIR} -cp src/ src/*.java
-	java -classpath ${BUILD_DIR} Main ${HOST} ${EXT} ${NEWDIR} ${ZEROPAD} ${MAXPAGE} ${PREFIX}
+	java -classpath ${BUILD_DIR} Main ${HOST} ${EXT} ${NEWDIR} ${ZEROPAD} ${MAXPAGE} ${PREFIX} ${STARTPAGE}
 
 r:
 	rm -rf ./${NEWDIR}

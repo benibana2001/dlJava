@@ -20,7 +20,7 @@ public class Downloader{
 //        System.out.println(dc.getPrefix());
         //
 
-        for (int i = 1; i < dc.getMaxPage(); i++) {
+        for (int i = dc.getStartPage(); i < dc.getMaxPage(); i++) {
             webImageBinder.appendWebImage(new WebImage(
                     dc.getHost() + dc.getPrefix() + Util.paddingZero(dc.getZeroPad(), i) + dc.getExt()
             ));

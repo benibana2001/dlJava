@@ -11,6 +11,7 @@ public class DownloaderCreator {
     private int zeroPad = 1;
     private int maxPage = 100;
     private String preFix = "";
+    private int startPage = 1;
 
     public DownloaderCreator(){}
 
@@ -54,6 +55,16 @@ public class DownloaderCreator {
         setPreFix(prefix);
     }
 
+    public DownloaderCreator(String host, String ext, String newDir, int zeroPad, int maxPage, String prefix, int startPage){
+        setHost(host);
+        setExt(ext);
+        setNewDir(newDir);
+        setMaxPage(maxPage);
+        setZeroPad(zeroPad);
+        setPreFix(prefix);
+        setStartPage(startPage);
+    }
+
     public void setHost(String host) {
         this.host = host;
     }
@@ -76,6 +87,10 @@ public class DownloaderCreator {
 
     public void setPreFix(String preFix) {
         this.preFix = preFix;
+    }
+
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
     }
 
     public String getHost() {
@@ -108,6 +123,10 @@ public class DownloaderCreator {
 
     public String getPrefix() {
         return this.preFix;
+    }
+
+    public int getStartPage() {
+        return this.startPage;
     }
 
     public void downloadFile() throws Exception {

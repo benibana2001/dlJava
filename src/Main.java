@@ -35,6 +35,8 @@ public class Main {
                 return new DownloaderCreator(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]));
             case 6:
                 return new DownloaderCreator(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]), args[5]);
+            case 7:
+                return new DownloaderCreator(args[0], args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]), args[5], Integer.parseInt(args[6]));
             default:
                 throw new ArgsWrong("コマンド引数の数に誤りがあります。");
         }
