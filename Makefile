@@ -22,3 +22,18 @@ f:
 	javac -d ${BUILD_FRAME_DIR} -cp src/ src/DownLoader/WebImageBinder/*.java
 	javac -d ${BUILD_FRAME_DIR} -cp src/ src/Util/*.java
 	java -cp ${BUILD_FRAME_DIR} TestFrame/TestFrame
+
+jar:
+	jar cvf DL.jar -C buildFrame .
+
+jarMakeMani:
+	touch DL.mani
+	echo "Main-Class: TestFrame.TestFrame" >> DL.mani
+	jar uvfm DL.jar DL.mani -C buildFrame .
+#	jar cvf DL.jar -C buildFrame .
+
+jarRm:
+	rm DL.jar DL.mani
+
+jarExec:
+	java -cp DL.jar TestFrame.TestFrame
