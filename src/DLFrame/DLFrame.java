@@ -22,7 +22,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     private DLFrameGateway dlFrameGateway;
 
-    private Dialog pop;
+    private Dialog popWhileDL;
 
     public DLFrame(String title) {
         super(title);
@@ -128,10 +128,10 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         buttonDL.addActionListener(this);
 
         // SET POPUP
-        setPop("ダウンロードを実行しています。");
+        setPopWhileDL("ダウンロードを実行しています。");
         // POPUP INITIALIZE
-        visiblePop(true);
-        visiblePop(false);
+        visiblePop(this.popWhileDL, true);
+        visiblePop(this.popWhileDL, false);
     }
 
     @Override
@@ -227,7 +227,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 buttonDL.setColleagueEnabled(false);
                 textHost.setBackground(Color.darkGray);
                 System.out.println("ポップアップを表示。");
-                visiblePop(true);
+                visiblePop(this.popWhileDL, true);
                 this.dlFrameGateway.download();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -235,7 +235,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 buttonDL.setColleagueEnabled(true);
                 textHost.setBackground(Color.white);
                 System.out.println("ポップアップを非表示。");
-                visiblePop(false);
+                visiblePop(this.popWhileDL, false);
             }
         }
     }
@@ -251,17 +251,17 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         }
     }
 
-    private void setPop(String message) {
-        this.pop = new Dialog(this, "POP-TITLE");
-        this.pop.setLayout(new FlowLayout());
-        this.pop.setResizable(false);
-        this.pop.add(new Label(message));
+    private void setPopWhileDL(String message) {
+        this.popWhileDL = new Dialog(this, "POP-TITLE");
+        this.popWhileDL.setLayout(new FlowLayout());
+        this.popWhileDL.setResizable(false);
+        this.popWhileDL.add(new Label(message));
 //        this.pop.setBackground(Color.yellow);
-        this.pop.setSize(400, 100);
-        this.pop.setVisible(false);
+        this.popWhileDL.setSize(400, 100);
+        this.popWhileDL.setVisible(false);
     }
 
-    private void visiblePop(Boolean isVisible) {
-        this.pop.setVisible(isVisible);
+    private void visiblePop(Dialog d, Boolean isVisible) {
+        d.setVisible(isVisible);
     }
 }
