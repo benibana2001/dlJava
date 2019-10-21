@@ -115,7 +115,7 @@ public class WebImage {
         dataInStream.close();
         dataOutStream.close();
 
-        waitMilli(100, "downloading: " + getUrl() + "...");
+        waitMilli(1, "downloading: " + getUrl() + "...");
     }
 
     public void download(String newDir) throws Exception {
