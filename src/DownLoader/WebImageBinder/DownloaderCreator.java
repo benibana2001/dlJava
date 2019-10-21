@@ -132,5 +132,6 @@ public class DownloaderCreator {
     public void downloadFile() throws Exception {
         Downloader d = new Downloader(this);
         d.download();
+        System.out.println("ダウンロードが完了しました。");
     }
 }

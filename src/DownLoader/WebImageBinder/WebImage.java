@@ -87,7 +87,7 @@ public class WebImage {
                                     "以降の画像は存在しないものとして終了します。\n",
                             getUrl().substring(0, getUrl().length() - 3)
                     );
-                    System.exit(1);
+//                    System.exit(1);
                 }
                 // 別のURLをセット
                 System.out.printf("拡張子を %s として再度接続を試行します。\n", extAry[i]);
