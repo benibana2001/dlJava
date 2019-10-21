@@ -210,8 +210,8 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             try {
                 this.dlFrameGateway.download();
             } catch (Exception ex) {
-                System.out.println(ex);
-                System.exit(1);
+//                System.out.println(ex);
+                ex.getStackTrace();
             }
         }
     }
