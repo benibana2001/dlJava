@@ -22,6 +22,8 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     private DLFrameGateway dlFrameGateway;
 
+    private Dialog pop;
+
     public DLFrame(String title) {
         super(title);
         //
@@ -82,8 +84,8 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     public void createColleagues() {
         CheckboxGroup groupExtension = new CheckboxGroup();
-        checkJPG = new ColleagueCheckBox(JPG, groupExtension, true);
-        checkPNG = new ColleagueCheckBox(PNG, groupExtension, false);
+        checkJPG = new ColleagueCheckBox(JPG, groupExtension, false);
+        checkPNG = new ColleagueCheckBox(PNG, groupExtension, true);
         checkGIF = new ColleagueCheckBox(GIF, groupExtension, false);
         CheckboxGroup groupZeroPad = new CheckboxGroup();
         checkDigitOne = new ColleagueCheckBox(digitOne, groupZeroPad, true);
@@ -93,7 +95,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         textNewDir = new ColleagueTextField("img", 20);
         textStartPage = new ColleagueTextField("1", 4);
         textMaxPage = new ColleagueTextField("100", 4);
-        textPrefix = new ColleagueTextField("photo_", 20);
+        textPrefix = new ColleagueTextField("x", 20);
         textAreaFQN = new ColleagueTextArea(1, 20);
         buttonDL = new ColleagueButton("ダウンロード");
 
@@ -124,6 +126,12 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         textMaxPage.addTextListener(textMaxPage);
         textPrefix.addTextListener(textPrefix);
         buttonDL.addActionListener(this);
+
+        // SET POPUP
+        setPop("ダウンロードを実行しています。");
+        // POPUP INITIALIZE
+        visiblePop(true);
+        visiblePop(false);
     }
 
     @Override
@@ -218,14 +226,16 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 // 実行中はボタンを非活性
                 buttonDL.setColleagueEnabled(false);
                 textHost.setBackground(Color.darkGray);
+                System.out.println("ポップアップを表示。");
+                visiblePop(true);
                 this.dlFrameGateway.download();
             } catch (Exception ex) {
-//                System.out.println(ex);
-                // todo: 新しいエラーを作る  ディレクトリが存在するときはポップアップをだす
                 ex.printStackTrace();
                 // 実行完了後はボタンを活性化
                 buttonDL.setColleagueEnabled(true);
                 textHost.setBackground(Color.white);
+                System.out.println("ポップアップを非表示。");
+                visiblePop(false);
             }
         }
     }
@@ -239,5 +249,19 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             System.out.println("Finish System.");
             System.exit(0);
         }
+    }
+
+    private void setPop(String message) {
+        this.pop = new Dialog(this, "POP-TITLE");
+        this.pop.setLayout(new FlowLayout());
+        this.pop.setResizable(false);
+        this.pop.add(new Label(message));
+//        this.pop.setBackground(Color.yellow);
+        this.pop.setSize(400, 100);
+        this.pop.setVisible(false);
+    }
+
+    private void visiblePop(Boolean isVisible) {
+        this.pop.setVisible(isVisible);
     }
 }
