@@ -86,11 +86,11 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         checkDigitOne = new ColleagueCheckBox(digitOne, groupZeroPad, true);
         checkDigitTwo = new ColleagueCheckBox(digitTwo, groupZeroPad, false);
         checkDigitThree = new ColleagueCheckBox(digitThree, groupZeroPad, false);
-        textHost = new ColleagueTextField("http://", 30);
-        textNewDir = new ColleagueTextField("src", 20);
+        textHost = new ColleagueTextField(" http://tk2-255-37178.vs.sakura.ne.jp/portfolio/poll/img/", 30);
+        textNewDir = new ColleagueTextField("img", 20);
         textStartPage = new ColleagueTextField("1", 4);
         textMaxPage = new ColleagueTextField("100", 4);
-        textPrefix = new ColleagueTextField("", 20);
+        textPrefix = new ColleagueTextField("photo_", 20);
         textAreaFQN = new ColleagueTextArea(1, 20);
         buttonDL = new ColleagueButton("ダウンロード");
 
