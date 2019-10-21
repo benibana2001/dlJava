@@ -40,7 +40,6 @@ public class Downloader{
 
     private void createDir(String dirname) throws Exception{
         File newFile = new File(dirname);
-
         if (newFile.mkdir()) {
             System.out.println(" ディレクトリを作成します。" + dirname);
         } else {

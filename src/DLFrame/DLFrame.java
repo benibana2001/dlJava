@@ -211,7 +211,6 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     }
 
     public void actionPerformed(ActionEvent e) {
-//        System.out.println(e);
         if (e.getSource() == buttonDL) {
             System.out.println("リクエスト開始");
             DLFrameGateway.hello();
@@ -219,11 +218,10 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 this.dlFrameGateway.download();
             } catch (Exception ex) {
 //                System.out.println(ex);
-                ex.getStackTrace();
+                ex.printStackTrace();
             }
         }
     }
-
 
     class WAdapter extends WindowAdapter {
         public void windowOpened(WindowEvent e) {
