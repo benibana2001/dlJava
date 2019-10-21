@@ -3,9 +3,7 @@ package DLFrame;
 import Util.Util;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
+import java.awt.event.*;
 
 public class DLFrame extends Frame implements ActionListener, Mediator {
     private ColleagueCheckBox checkJPG;
@@ -30,7 +28,8 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         //
         setSize(100, 1000);
         setBackground(Color.lightGray);
-
+        //
+        addWindowListener(new WAdapter());
         setLayout(new GridLayout(22, 1));
 //        setLayout(new FlowLayout());
 
@@ -127,7 +126,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     }
 
     public void colleagueCheckBoxChanged(ItemEvent e) {
-        switch (e.getItem().toString()){
+        switch (e.getItem().toString()) {
             case PNG:
                 dlFrameGateway.setExt(".png");
                 break;
@@ -169,13 +168,13 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             buttonDL.setColleagueEnabled(false);
             this.dlFrameGateway.setText("");
         }
-        //
-        if (textStartPage.isValid()) {
+        // todo: 初回アクセス時、isValidがfalseでelseブロックに入る
+        if (textStartPage.getText().length() > 0) {
             textStartPage.setBackground(Color.white);
             this.dlFrameGateway.setStartPage(Integer.parseInt(textStartPage.getText()));
         } else {
             textMaxPage.setBackground(Color.red);
-            buttonDL.setColleagueEnabled(false);
+//            buttonDL.setColleagueEnabled(false);
             this.dlFrameGateway.setStartPage(1);
         }
         //
@@ -213,6 +212,18 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 //                System.out.println(ex);
                 ex.getStackTrace();
             }
+        }
+    }
+
+
+    class WAdapter extends WindowAdapter {
+        public void windowOpened(WindowEvent e) {
+            System.out.println("System Start!");
+        }
+
+        public void windowClosing(WindowEvent e) {
+            System.out.println("Finish System.");
+            System.exit(0);
         }
     }
 }
