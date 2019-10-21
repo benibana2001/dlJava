@@ -86,8 +86,8 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     public void createColleagues() {
         CheckboxGroup groupExtension = new CheckboxGroup();
-        checkJPG = new ColleagueCheckBox(JPG, groupExtension, false);
-        checkPNG = new ColleagueCheckBox(PNG, groupExtension, true);
+        checkJPG = new ColleagueCheckBox(JPG, groupExtension, true);
+        checkPNG = new ColleagueCheckBox(PNG, groupExtension, false);
         checkGIF = new ColleagueCheckBox(GIF, groupExtension, false);
         CheckboxGroup groupZeroPad = new CheckboxGroup();
         checkDigitOne = new ColleagueCheckBox(digitOne, groupZeroPad, true);
@@ -97,7 +97,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         textNewDir = new ColleagueTextField("img", 20);
         textStartPage = new ColleagueTextField("1", 4);
         textMaxPage = new ColleagueTextField("100", 4);
-        textPrefix = new ColleagueTextField("x", 20);
+        textPrefix = new ColleagueTextField("photo_", 20);
         textAreaFQN = new ColleagueTextArea(1, 20);
         buttonDL = new ColleagueButton("ダウンロード");
 

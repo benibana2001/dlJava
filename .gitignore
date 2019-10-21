@@ -4,6 +4,8 @@
 *.iml
 
 *.class
+*.jar
+*.mani
 
 *.png
 *.jpg
