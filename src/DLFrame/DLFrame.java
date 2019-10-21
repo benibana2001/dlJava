@@ -8,6 +8,7 @@ import java.awt.event.*;
 public class DLFrame extends Frame implements ActionListener, Mediator {
     private ColleagueCheckBox checkJPG;
     private ColleagueCheckBox checkPNG;
+    private ColleagueCheckBox checkGIF;
     private ColleagueCheckBox checkDigitOne;
     private ColleagueCheckBox checkDigitTwo;
     private ColleagueCheckBox checkDigitThree;
@@ -30,7 +31,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         setBackground(Color.lightGray);
         //
         addWindowListener(new WAdapter());
-        setLayout(new GridLayout(22, 1));
+        setLayout(new GridLayout(23, 1));
 //        setLayout(new FlowLayout());
 
         createColleagues();
@@ -44,6 +45,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         add(new Label("拡張子"));
         add(checkJPG);
         add(checkPNG);
+        add(checkGIF);
         //
         add(new Label("ゼロ埋め"));
         add(checkDigitOne);
@@ -73,6 +75,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
     private final String JPG = "JPG";
     private final String PNG = "PNG";
+    private final String GIF = "GIF";
     private final String digitOne = "1ケタ";
     private final String digitTwo = "2ケタ";
     private final String digitThree = "3ケタ";
@@ -81,6 +84,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         CheckboxGroup groupExtension = new CheckboxGroup();
         checkJPG = new ColleagueCheckBox(JPG, groupExtension, true);
         checkPNG = new ColleagueCheckBox(PNG, groupExtension, false);
+        checkGIF = new ColleagueCheckBox(GIF, groupExtension, false);
         CheckboxGroup groupZeroPad = new CheckboxGroup();
         checkDigitOne = new ColleagueCheckBox(digitOne, groupZeroPad, true);
         checkDigitTwo = new ColleagueCheckBox(digitTwo, groupZeroPad, false);
@@ -96,6 +100,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         // SET MEDIATOR
         checkJPG.setMediator(this);
         checkPNG.setMediator(this);
+        checkGIF.setMediator(this);
         checkDigitOne.setMediator(this);
         checkDigitTwo.setMediator(this);
         checkDigitThree.setMediator(this);
@@ -109,6 +114,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
         // SET LISTENER
         checkJPG.addItemListener(checkJPG);
         checkPNG.addItemListener(checkPNG);
+        checkGIF.addItemListener(checkGIF);
         checkDigitOne.addItemListener(checkDigitOne);
         checkDigitTwo.addItemListener(checkDigitTwo);
         checkDigitThree.addItemListener(checkDigitThree);
@@ -132,6 +138,9 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 break;
             case JPG:
                 dlFrameGateway.setExt(".jpg");
+                break;
+            case GIF:
+                dlFrameGateway.setExt(".gif");
                 break;
             case digitOne:
                 dlFrameGateway.setZeroPad(1);
