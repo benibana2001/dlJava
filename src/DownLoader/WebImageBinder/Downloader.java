@@ -36,7 +36,6 @@ public class Downloader{
             WebImage webImage = (WebImage) it.next();
             webImage.download(dc.getNewDir());
         }
-        System.out.println("#FINISH");
     }
 
     private void createDir(String dirname) throws Exception{
