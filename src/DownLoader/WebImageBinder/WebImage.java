@@ -119,7 +119,7 @@ public class WebImage {
     public void download(String newDir) throws Exception {
         setNewDir(newDir);
         multiFetch();
-        System.out.println("MultiFect DONE");
+        System.out.println("MultiFetch DONE");
         writeImage();
     }
 

@@ -215,10 +215,17 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
             System.out.println("リクエスト開始");
             DLFrameGateway.hello();
             try {
+                // 実行中はボタンを非活性
+                buttonDL.setColleagueEnabled(false);
+                textHost.setBackground(Color.darkGray);
                 this.dlFrameGateway.download();
             } catch (Exception ex) {
 //                System.out.println(ex);
+                // todo: 新しいエラーを作る  ディレクトリが存在するときはポップアップをだす
                 ex.printStackTrace();
+                // 実行完了後はボタンを活性化
+                buttonDL.setColleagueEnabled(true);
+                textHost.setBackground(Color.white);
             }
         }
     }
