@@ -1,6 +1,8 @@
 package DownLoader.WebImageBinder;
 
 import java.io.File;
+
+import DLException.FailedMkDir;
 import Util.*;
 
 public class Downloader{

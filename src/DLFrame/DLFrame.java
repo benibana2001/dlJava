@@ -1,5 +1,6 @@
 package DLFrame;
 
+import DLException.FailedMkDir;
 import Util.Util;
 
 import java.awt.*;
@@ -23,6 +24,7 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     private DLFrameGateway dlFrameGateway;
 
     private Dialog popWhileDL;
+    private Dialog popDuplicateDir;
 
     public DLFrame(String title) {
         super(title);
@@ -129,9 +131,12 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
 
         // SET POPUP
         setPopWhileDL("ダウンロードを実行しています。");
+        setPopDuplicateDir("ディレクトリの作成に失敗しました。名前を確認してください。");
         // POPUP INITIALIZE
         visiblePop(this.popWhileDL, true);
         visiblePop(this.popWhileDL, false);
+        visiblePop(this.popDuplicateDir, true);
+        visiblePop(this.popDuplicateDir, false);
     }
 
     @Override
@@ -229,6 +234,14 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 System.out.println("ポップアップを表示。");
                 visiblePop(this.popWhileDL, true);
                 this.dlFrameGateway.download();
+            } catch (FailedMkDir f) {
+                f.printStackTrace();
+                System.out.println("ディレクトリエラー");
+                // ディレクトリの作成に失敗した場合はポップアップを表示する
+                buttonDL.setColleagueEnabled(true);
+                textHost.setBackground(Color.white);
+                visiblePop(this.popDuplicateDir, true);
+                visiblePop(this.popWhileDL, false);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 // 実行完了後はボタンを活性化
@@ -237,6 +250,11 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
                 System.out.println("ポップアップを非表示。");
                 visiblePop(this.popWhileDL, false);
             }
+        }
+
+        if (e.getActionCommand().equals("OK")) {
+            System.out.println("OKが押下されました。");
+            this.popDuplicateDir.dispose();
         }
     }
 
@@ -252,13 +270,25 @@ public class DLFrame extends Frame implements ActionListener, Mediator {
     }
 
     private void setPopWhileDL(String message) {
-        this.popWhileDL = new Dialog(this, "POP-TITLE");
+        this.popWhileDL = new Dialog(this, "ダウンロード");
         this.popWhileDL.setLayout(new FlowLayout());
         this.popWhileDL.setResizable(false);
         this.popWhileDL.add(new Label(message));
-//        this.pop.setBackground(Color.yellow);
+        this.popWhileDL.setBackground(Color.yellow);
         this.popWhileDL.setSize(400, 100);
         this.popWhileDL.setVisible(false);
+    }
+
+    private void setPopDuplicateDir(String message) {
+        this.popDuplicateDir = new Dialog(this, "エラー");
+        this.popDuplicateDir.setLayout(new FlowLayout());
+        this.popDuplicateDir.setResizable(false);
+        this.popDuplicateDir.add(new Label(message));
+        this.popDuplicateDir.setBackground(Color.yellow);
+        this.popDuplicateDir.setSize(400, 100);
+        Button b = (Button) this.popDuplicateDir.add(new Button("OK"));
+        b.addActionListener(this);
+        this.popDuplicateDir.setVisible(false);
     }
 
     private void visiblePop(Dialog d, Boolean isVisible) {

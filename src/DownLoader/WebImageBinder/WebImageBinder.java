@@ -27,14 +27,14 @@ public class WebImageBinder implements Aggregate{
     }
 }
 
-class HttpStatusDead extends Exception {
-    HttpStatusDead(String message) {
-        super(message);
-    }
-}
+//class HttpStatusDead extends Exception {
+//    HttpStatusDead(String message) {
+//        super(message);
+//    }
+//}
 
-class FailedMkDir extends Exception {
-    public FailedMkDir(String message) {
-        super(message);
-    }
-}
+//class FailedMkDir extends Exception {
+//    public FailedMkDir(String message) {
+//        super(message);
+//    }
+//}
